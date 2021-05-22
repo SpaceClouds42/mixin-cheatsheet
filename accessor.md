@@ -27,6 +27,16 @@ public interface AccessorMixin {
 	void setDummyField(int value);
 }
 ```
+```kt
+@Mixin(Dummy::class)
+public interface AccessorMixin {
+	@Accessor(["dummyField"])
+	getDummyField(): Int
+
+	@Accessor(["dummyField"])
+	setDummyField(value: Int)
+}
+```
 
 Usage:
 
@@ -37,5 +47,11 @@ Usage:
 
       	// Setting the field
       	((AccessorMixin) Dummy.getInstance()).setDummyField(i + 1);
+  }
+```
+```kt
+  public myMethod() {
+      	// Getting the field
+      	(Dummy.getInstance() as AccessorMixin).dummyField += 1 // Setting the field
   }
 ```
